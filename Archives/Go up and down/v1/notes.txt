@@ -1,0 +1,3 @@
+Permet de remonter dans la hiérarchie en pliant au fur et à mesure, et de revenir sur ses pas en descendant.
+Pour cela sauvegarde le trajet fait dans la storageArea.
+Sauf que j'ai fini par me souvenir que la fonction de navigation dans l'historique native fait le même boulot !
