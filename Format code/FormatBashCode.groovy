@@ -25,4 +25,3 @@ html = "<html><body>" + html.trim() + "</body></html>"
 node.text = html
 node.style.maxNodeWidth = 2000
 node.style.name = "Code"
-println( html )
