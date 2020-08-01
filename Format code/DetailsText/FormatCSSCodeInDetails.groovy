@@ -1,16 +1,15 @@
-// @ExecutionModes({on_single_node="/main_menu/format/Code"})
+// @ExecutionModes({on_single_node="/main_menu/format/Code/DetailsText"})
 
 // Create a file that contains this node source code text
 File file = File.createTempFile( "format-code", "" )
-file.text = node.plainText
+file.text = node.details.plain
 
 // Create the command line that convert this source code file to html
 command =
     '"C:\\Program Files\\highlight\\highlight.exe"' +
     ' "' + file.absolutePath + '"' +
-    ' --syntax php' +
+    ' --syntax css' +
     ' --font "Source Code Pro" --font-size 12 --style edit-xcode' +
-    ' -F stroustrup' +
     ' -O html -I -u UTF-8 -f --enclose-pre --inline-css'
 
 // Get the output of this conversion
@@ -23,6 +22,6 @@ html = html.replaceAll( />\s+<\/pre>/, "></pre>" )
 html = "<html><body>" + html.trim() + "</body></html>"
 
 // Replace the original node content by this html content, and format the node
-node.text = html
+node.details = html
 node.style.maxNodeWidth = 2000
-node.style.name = "Code"
+if( ! node.icons.contains( "Code" ) ) node.icons.add( "Code" )

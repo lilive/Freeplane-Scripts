@@ -1,15 +1,16 @@
-// @ExecutionModes({on_single_node="/main_menu/format/Code"})
+// @ExecutionModes({on_single_node="/main_menu/format/Code/CoreText"})
 
 // Create a file that contains this node source code text
 File file = File.createTempFile( "format-code", "" )
-file.text = node.text
+file.text = node.plainText
 
 // Create the command line that convert this source code file to html
 command =
     '"C:\\Program Files\\highlight\\highlight.exe"' +
     ' "' + file.absolutePath + '"' +
-    ' --syntax sql' +
+    ' --syntax php' +
     ' --font "Source Code Pro" --font-size 12 --style edit-xcode' +
+    ' -F stroustrup' +
     ' -O html -I -u UTF-8 -f --enclose-pre --inline-css'
 
 // Get the output of this conversion

@@ -1,4 +1,4 @@
-// @ExecutionModes({on_single_node="/main_menu/format/Code"})
+// @ExecutionModes({on_single_node="/main_menu/format/Code/CoreText"})
 
 // Create a file that contains this node source code text
 File file = File.createTempFile( "format-code", "" )
@@ -8,7 +8,7 @@ file.text = node.text
 command =
     '"C:\\Program Files\\highlight\\highlight.exe"' +
     ' "' + file.absolutePath + '"' +
-    ' --syntax java' +
+    ' --syntax html' +
     ' --font "Source Code Pro" --font-size 12 --style edit-xcode' +
     ' -O html -I -u UTF-8 -f --enclose-pre --inline-css'
 
