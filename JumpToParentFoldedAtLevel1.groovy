@@ -11,6 +11,3 @@ node.parent.children.each{ it.folded = true }
 // Jump to parent
 c.select( node.parent  )
 c.centerOnNode( node.parent )
-}
-
-
