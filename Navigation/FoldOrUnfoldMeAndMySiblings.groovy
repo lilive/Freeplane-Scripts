@@ -2,6 +2,8 @@
 
 // Fold or unfold this node, with its children folded.
 // Do the same for all its siblings.
+// Author: lilive
+// Licence: WTFPL2
 
 def unfold( n ){
     n.folded = false

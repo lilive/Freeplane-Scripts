@@ -1,6 +1,8 @@
 // @ExecutionModes({on_selected_node="/main_menu/navigate/fold"})
 
 // Jump to the parent of this node, fold it and fold its children
+// Author: lilive
+// Licence: WTFPL2
 
 def fold( node ){
     node.children.each{ fold( it ) }

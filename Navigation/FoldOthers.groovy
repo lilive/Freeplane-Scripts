@@ -1,6 +1,8 @@
 // @ExecutionModes({on_selected_node="/main_menu/navigate/fold"})
 
 // Fold all nodes and keep the current node visible
+// Author: lilive
+// Licence: WTFPL2
 
 def fold( node ){
     node.children.each{ fold( it ) }

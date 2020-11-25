@@ -2,6 +2,8 @@
 
 // Suit le lien comme Menu > Navigation > Lien > Suivre le lien
 // mais ouvre les dossiers dans freecommander
+// Author: lilive
+// Licence: WTFPL2
 
 import java.awt.Desktop
 

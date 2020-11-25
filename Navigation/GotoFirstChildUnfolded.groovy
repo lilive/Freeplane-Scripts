@@ -2,6 +2,8 @@
 
 // If the node is folded, unfold it at level 1
 // Else go to the first child of this node, folded
+// Author: lilive
+// Licence: WTFPL2
 
 def fold( node ){
     node.children.each{ fold( it ) }

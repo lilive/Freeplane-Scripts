@@ -1,6 +1,9 @@
 // @ExecutionModes({on_single_node="/main_menu/navigate"})
 
 /*
+Author: lilive
+Licence: WTFPL2
+
 Permet de chercher un noeud parmi un ensemble de noeuds frères.
 - Plie le noeud sélectionné
 - Sélectionne le noeud frère suivant

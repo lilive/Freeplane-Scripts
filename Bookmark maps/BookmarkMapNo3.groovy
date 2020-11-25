@@ -2,6 +2,7 @@
 
 // Use this script to bookmark the currently opened map
 // author: lilive
+// Licence: WTFPL 2
 
 // The bookmark identifier for this map
 id = "3"

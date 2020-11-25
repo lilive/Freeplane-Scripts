@@ -1,5 +1,8 @@
 // @ExecutionModes({on_single_node="/main_menu/format/cloud_shapes"})
 
+// Author: lilive
+// Licence: WTFPL2
+
 import org.freeplane.features.mode.Controller
 import org.freeplane.features.map.INodeSelectionListener
 import org.freeplane.features.map.INodeChangeListener

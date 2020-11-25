@@ -4,6 +4,8 @@
 // each #xxxxxx word in a node text, details or note is added
 // as a new hashtag attribute in this node.
 // Each hashtag attribute remains unique.
+// Author: lilive
+// Licence: WTFPL2
 
 c.findAll().each{
     node ->

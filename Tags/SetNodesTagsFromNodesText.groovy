@@ -4,6 +4,8 @@
 // set the node hashtag attributes from the #xxxxx words found
 // in this node text, details and note.
 // Any existing hashtags attribute that do not refer to any text is deleted.
+// Author: lilive
+// Licence: WTFPL2
 
 c.findAll().each{
     node ->

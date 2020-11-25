@@ -1,6 +1,8 @@
 // @ExecutionModes({on_single_node="/main_menu/navigate"})
 
 // Jump to next clone
+// Author: lilive
+// Licence: WTFPL2
 
 if( node.getCountNodesSharingContent() > 0 )
 {

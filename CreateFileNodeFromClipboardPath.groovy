@@ -3,6 +3,8 @@
 // A appeler si un chemin vers un fichier est dans le presse-papier.
 // Crée un noeud enfant dont le texte est le nom du fichier et qui contient
 // un lien vers le fichier.
+// Author: lilive
+// Licence: WTFPL2
 
 import java.awt.Toolkit
 import java.awt.datatransfer.Clipboard

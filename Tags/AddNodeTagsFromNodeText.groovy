@@ -3,6 +3,8 @@
 // Each #xxxxxx word in the node text, details or note is added
 // as a new hashtag attribute in this node.
 // Each hashtag attribute remains unique.
+// Author: lilive
+// Licence: WTFPL2
 
 def tags = ( node.text =~ /#(\S+)/ ).findAll().collect{ it[1] }
 if( node.details ) tags += ( node.details.text =~ /#(\S+)/ ).findAll().collect{ it[1] }

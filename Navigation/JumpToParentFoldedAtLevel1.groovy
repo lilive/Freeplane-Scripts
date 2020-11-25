@@ -2,6 +2,8 @@
 
 // Fold all siblings of this node and
 // jump to the parent of this node
+// Author: lilive
+// Licence: WTFPL2
 
 if( ! node.parent ) return
 

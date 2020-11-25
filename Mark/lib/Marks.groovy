@@ -1,3 +1,8 @@
+/*
+Author: lilive
+Licence: WTFPL2
+*/
+
 import org.freeplane.plugin.script.proxy.ScriptUtils
 
 def static store( n )

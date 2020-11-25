@@ -1,5 +1,10 @@
 // @ExecutionModes({on_single_node="/main_menu/format/Code/CoreText"})
 
+/*
+Author: lilive
+Licence: WTFPL2
+*/
+
 // Create a file that contains this node source code text
 File file = File.createTempFile( "format-code", "" )
 file.text = node.text

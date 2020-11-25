@@ -1,6 +1,9 @@
 // @ExecutionModes({on_single_node="/menu_bar/format/menu_coreFormat/NodeWidth"})
 
 /*
+Author: lilive
+Licence: WTFPL 2
+
 Increase the minimal node width of each selected node by a "step" amount.
 If more than one node is selected, the minimum with for each node is set
 to the minimum width of the larger one (after increment).

@@ -1,6 +1,9 @@
 // @ExecutionModes({on_single_node="/menu_bar/format/menu_coreFormat/NodeWidth"})
 
 /*
+Author: lilive
+Licence: WTFPL 2
+
 Decrease the minimal node width of each selected node by a "step" amount.
 If the minimal width of a node go above 0, unset it (equivalent to uncheck
 the minimal width checkbox in the format panel).
