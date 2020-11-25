@@ -26,4 +26,5 @@ nodes.each{
     if( newWidth <= 0 ) newWidth = -1
     
     it.style.minNodeWidth = newWidth
+    it.style.maxNodeWidth = newWidth
 }

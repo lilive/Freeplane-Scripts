@@ -33,4 +33,5 @@ newWidth = (int)( newWidth / step ) * step + step
 // Change all nodes minimum width
 nodes.each{
     it.style.minNodeWidth = newWidth
+    it.style.maxNodeWidth = newWidth
 }
