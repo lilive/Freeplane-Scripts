@@ -9,6 +9,9 @@
 // Note: with FP 1.9.0 alpha, the link do not works well if SumatraPDF
 // is not already started.
 
+// Author: lilive
+// Licence: WTFPL2
+
 
 import javax.swing.JFileChooser
 import javax.swing.filechooser.FileNameExtensionFilter
