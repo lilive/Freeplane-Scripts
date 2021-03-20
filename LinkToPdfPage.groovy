@@ -1,13 +1,37 @@
 // @ExecutionModes({on_single_node="/main_menu/insert/links"})
 
-// Create a link that open a pdf in SumatraPDF, at a specific page.
-// Only tested for Windows.
-// The script open a dialog to ask for the pdf and the page number.
-// Then it can create a link to this page in the currently selected node,
-// or an entire node to handle this link.
+/*
 
-// Note: with FP 1.9.0 alpha, the link do not works well if SumatraPDF
-// is not already started.
+Summary
+-------
+Create a link that open a pdf in SumatraPDF, at a specific page.
+Only tested for Windows.
+The script open a dialog to ask for the pdf and the page number.
+Then it can create a link to this page in the currently selected node,
+or an entire node to handle this link.
+
+Note
+----
+With FP 1.9.0 alpha, the link do not works well if SumatraPDF
+is not already started.
+
+How to customize
+----------------
+
+1- Default file chooser dialog location
+By default, the first time the script is called during a Freeplane
+session, the file chooser open in the user home directory. You can change
+this behavior and set a custom default path. You have to replace the line
+static String dir = ""
+by something like
+static String dir = /C:\Users\xxx\Downloads/
+
+2- Change the command line options passed to SumatraPDF, or use a
+different pdf viewer
+Read comments after the line
+String getLink(){
+
+*/
 
 // Author: lilive
 // Licence: WTFPL2
@@ -30,22 +54,25 @@ import java.awt.event.ActionEvent
 import javax.swing.KeyStroke
 
 
-// The 3 main fields of the script
 pageTF = null    // JtextField for the page
 pdfPathTF = null // JtextField for the pdf path
 gui = null       // JFrame for the whole dialog
+pdf = null       // java.io.File that points to the pdf
+page = null      // String that hold the page number
 
-
-// Class with a static field, to memorize the pdf path
+// A class with a static fields, to memorize the path
 // between script calls (workaround)
-class LastFile {
-    static String path = ""
+class Path {
+    // Open the file chooser in this directory
+    static String dir = ""
+    // This is the last choosen pdf file
+    static String file = ""
 }
 
 // Open a file chooser dialog to select the pdf
 fileFilter = new FileNameExtensionFilter("PDF document", "pdf")
 String askPdf(){
-    JFileChooser jfc = new JFileChooser( LastFile.path )
+    JFileChooser jfc = new JFileChooser( Path.dir )
     jfc.setFileFilter( fileFilter )
     int returnValue = jfc.showOpenDialog()
     if( returnValue == JFileChooser.APPROVE_OPTION ) return jfc.getSelectedFile()?.getAbsolutePath()
@@ -73,7 +100,7 @@ def createGui(){
                     constraints: gbc( gridx:0, gridy:0, insets: new Insets( 0, 0, 5, 5 ) )
                 )
                 pdfPathTF = textField(
-                    text: LastFile.path,
+                    text: Path.file,
                     columns: 40,
                     constraints: gbc( gridx:1, gridy:0, fill:GridBagConstraints.HORIZONTAL, weightx:1, insets: new Insets( 0, 0, 5, 5 ) )
                 )
@@ -133,7 +160,7 @@ def createGui(){
 // Make ENTER trigger the link creation
 def addEnterKeyListener(){
     def tfEnterAdapter = new java.awt.event.KeyAdapter(){
-        @Override public void keyReleased( KeyEvent e ){
+        @Override public void keyTyped( KeyEvent e ){
             int key = e.getKeyCode()
             if( key == KeyEvent.VK_ENTER ) createLink()
         }
@@ -157,21 +184,46 @@ def addEscKeyListener(){
     )
 }
 
-// Return true if we have got a valid pdf path and a valid page number
-boolean checkDatas(){
-    if( ! ( pageTF.text ==~ /\d+/ ) ) return false
-    if( pdfPathTF.text == "" ) return false
-    def file = new File( pdfPathTF.text )
-    if( ! file.exists() ) return false
-    return fileFilter.accept( file )
+// Return true if we have got a valid pdf path and a valid page number.
+// Set the pdf and the page fields, update the class Path.
+boolean parseDatas(){
+    
+    pdf = pdfPathTF.text ? new File( pdfPathTF.text ) : null
+    Path.file = ""
+    if( pdf && pdf.exists() && fileFilter.accept( pdf ) ){
+        Path.file = pdf.path
+        Path.dir = pdf.parent
+    }
+
+    if( pageTF.text ==~ /\d+/ ) page = pageTF.text
+    else page = null
+    
+    return ( pdf && page ) 
 }
 
 // Create the string for the link to create
 String getLink(){
-    def pdfReaderPath = /C:\Program Files\SumatraPDF\SumatraPDF.exe/
-    def args = /-reuse-instance -page / + pageTF.text
-    def filePath = pdfPathTF.text
-    def cmd = /execute:_"${pdfReaderPath}" ${args} "${filePath}"/
+    
+    // This is where you can customize the program you want to use
+    // to open the pdf file, or the options that you want to pass
+    // to the program when it starts.
+
+    // Two strings controls the generation of the link that will
+    // be added to the map:
+    
+    // Path to the executable that will display the pdf
+    // (SumatraPDF, Evince, Adobe Reader, etc)
+    def pdfViewerPath = /C:\Program Files\SumatraPDF\SumatraPDF.exe/
+    
+    // Arguments to add to the command
+    def args = /-reuse-instance -page $page/
+    
+    // The above values are set to use SumatraPDF. You may use the
+    // values below to use Acrobat Reader
+    // def pdfViewerPath = /C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe/
+    // def args = "/N /S /O /A \"page=$page\""
+
+    def cmd = /execute:_"${pdfViewerPath}" ${args} "${pdf.path}"/
     return encode( cmd )
 }
 
@@ -192,18 +244,15 @@ String encode( String str ){
 // Close the dialog and create a link to thze pdf page in the selected node
 def createLink(){
     gui.dispose()
-    if( ! checkDatas() ) return
-    LastFile.path = pdfPathTF.text
+    if( ! parseDatas() ) return
     node.link.text = getLink()
 }
 
 // Close the dialog and create a node that link the pdf page
 def createNode(){
     gui.dispose()
-    if( ! checkDatas() ) return
-    LastFile.path = pdfPathTF.text
-    def pdfName = new File( pdfPathTF.text ).getName()
-    n = node.createChild( "${pdfName} - Page ${pageTF.text}" )
+    if( ! parseDatas() ) return
+    n = node.createChild( "${pdf.name} - Page ${page}" )
     n.link.text = getLink()
 }
 
