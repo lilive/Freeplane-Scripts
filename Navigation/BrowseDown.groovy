@@ -1,15 +1,15 @@
 // @ExecutionModes({on_single_node="/main_menu/navigate"})
 
 /*
-Author: lilive
-Licence: WTFPL2
-
 Permet de chercher un noeud parmi un ensemble de noeuds frères.
 - Plie le noeud sélectionné
 - Sélectionne le noeud frère suivant
 - Déplie-le au même niveau que l'était le noeud sélectionné
 Todo: si un des noeuds n'a pas d'enfants, tous les noeuds suivant qui
 seront explorés ne seront pas dépliés. Il faudrait remédier à cela.
+
+Author: lilive
+Licence: WTFPL2
 */
 
 def getUnfoldedDepth( n ){
@@ -42,4 +42,3 @@ def depth = getUnfoldedDepth( node )
 fold( node )
 foldAtLevel( n, depth )
 c.select( n )
-c.centerOnNode( n )
