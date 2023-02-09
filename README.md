@@ -7,7 +7,7 @@ These are some scripts I use, or I used. Try them at your own risk !
 # Folders overview
 
 - [Archives](Archives): Old scripts
-- [Bookmark maps](Bookmark maps): Memorize maps
+- [Bookmark maps](Bookmark%20maps): Memorize maps
 - [Filter](Filter): Filter scripts
 - [Format](Format): Formatting scripts
 - [Mark](Mark): Mark one node and do stuffs with it
