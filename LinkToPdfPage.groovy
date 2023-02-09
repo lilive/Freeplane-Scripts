@@ -91,22 +91,21 @@ def createGui(){
         ){
             panel(
                 constraints: BorderLayout.PAGE_START,
-                border: emptyBorder( [ 5, 5, 5, 5 ] )
+                border: emptyBorder( [ 15, 15, 15, 15 ] )
             ){
                 gbl = gridBagLayout()
-                gbl.defaultConstraints.insets = new Insets( 5, 5, 5, 5 )
                 label(
                     text: "PDF document",
-                    constraints: gbc( gridx:0, gridy:0, insets: new Insets( 0, 0, 5, 5 ) )
+                    constraints: gbc( gridx:0, gridy:0, insets: new Insets( 0, 0, 15, 15 ) )
                 )
                 pdfPathTF = textField(
                     text: Path.file,
                     columns: 40,
-                    constraints: gbc( gridx:1, gridy:0, fill:GridBagConstraints.HORIZONTAL, weightx:1, insets: new Insets( 0, 0, 5, 5 ) )
+                    constraints: gbc( gridx:1, gridy:0, fill:GridBagConstraints.HORIZONTAL, weightx:1, insets: new Insets( 0, 0, 15, 15 ) )
                 )
                 button(
                     text: "Choose",
-                    constraints: gbc( gridx:2, gridy:0, insets: new Insets( 0, 0, 5, 0 ) ),
+                    constraints: gbc( gridx:2, gridy:0, insets: new Insets( 0, 0, 15, 0 ) ),
                     actionPerformed: {
                         e ->
                         def path = askPdf()
@@ -119,31 +118,31 @@ def createGui(){
                 )
                 label(
                     text: "Page number",
-                    constraints: gbc( gridx:0, gridy:1, anchor:GridBagConstraints.LINE_END, insets: new Insets( 0, 0, 0, 5 ) )
+                    constraints: gbc( gridx:0, gridy:1, anchor:GridBagConstraints.LINE_END, insets: new Insets( 0, 0, 15, 15 ) )
                 )
                 pageTF = textField(
                     text: "",
                     columns: 5,
-                    constraints: gbc( gridx:1, gridy:1, anchor:GridBagConstraints.LINE_START, gridwidth:2 )
+                    constraints: gbc( gridx:1, gridy:1, anchor:GridBagConstraints.LINE_START, gridwidth:2, insets: new Insets( 0, 0, 15, 0 ) )
                 )
                 pageTF.maximumSize = pageTF.preferredSize
                 pageTF.minimumSize = pageTF.preferredSize
             }
             hbox(
                 constraints: BorderLayout.PAGE_END,
-                border: emptyBorder( [ 0, 5, 5, 5 ] )
+                border: emptyBorder( [ 0, 15, 15, 15 ] )
             ){
                 hglue()
                 button(
                     text: "Cancel",
                     actionPerformed: { gui.dispose() }
                 )
-                hstrut()
+                hstrut(15)
                 okBtn = button(
                     text: "Create link to PDF page",
                     actionPerformed: { createLink() }
                 )
-                hstrut()
+                hstrut(15)
                 button(
                     text: "Create node and link",
                     actionPerformed: { createNode() }
