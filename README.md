@@ -54,6 +54,9 @@ Same as menu Navigate > Goto root then Navigate > Fold > Fold all
 
 ![demo](Format/ToggleBlockViewForAllSiblings.gif)
 
+- Format code
+
+![demo](Format/FormatCode/example.png)
 
 ## Others
 
