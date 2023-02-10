@@ -44,6 +44,12 @@ Same as menu Navigate > Goto root then Navigate > Fold > Fold all
 
 ![demo](Navigation/JumpToNextClone.gif)
 
+- SelectSiblings, SelectChildren, SelectParents
+
+Usefull to apply the same format to columns of nodes
+
+![demo](Navigation/all-siblings-parents-children.gif)
+
 ## Format
 
 - DecreaseNodeWidth and IncreaseNodeWidth
