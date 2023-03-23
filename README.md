@@ -12,6 +12,7 @@ These are some scripts I use, or I used. Try them at your own risk !
 - [Format](Format): Formatting scripts
 - [Mark](Mark): Mark one node and do stuffs with it
 - [Navigation](Navigation): Move within the map
+- [Progress icons](Progress%20icons): Change progress icons
 - [Tags](Tags): Tags scripts
 - [Tests](Tests)
 - [View](View): Display scripts
